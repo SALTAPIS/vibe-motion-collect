@@ -1,0 +1,16 @@
+{
+  "title": "Morph Particles",
+  "url": "https://github.com/MisterPrada/morph-particles",
+  "tags": [
+    "threejs",
+    "particles",
+    "TSL",
+    "morphing"
+  ],
+  "description": "Particles morphing with animation and smooth scroll integration",
+  "author": "Mister Prada",
+  "license": "MIT",
+  "folder": "morph-particles",
+  "clonedAt": "2025-05-25T17:39:02.119Z",
+  "originalRepo": "https://github.com/MisterPrada/morph-particles"
+}

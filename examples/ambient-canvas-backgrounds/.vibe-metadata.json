@@ -1,0 +1,15 @@
+{
+  "title": "Ambient Canvas Backgrounds",
+  "url": "https://github.com/crnacura/AmbientCanvasBackgrounds",
+  "tags": [
+    "canvas",
+    "ambient",
+    "background"
+  ],
+  "description": "Collection of ambient background animations using canvas",
+  "author": "crnacura",
+  "license": "MIT",
+  "folder": "ambient-canvas-backgrounds",
+  "clonedAt": "2025-05-25T17:38:51.490Z",
+  "originalRepo": "https://github.com/crnacura/AmbientCanvasBackgrounds"
+}

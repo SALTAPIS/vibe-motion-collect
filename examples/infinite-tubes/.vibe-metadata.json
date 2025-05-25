@@ -1,0 +1,16 @@
+{
+  "title": "Infinite Tubes",
+  "url": "https://github.com/Mamboleoo/InfiniteTubes",
+  "tags": [
+    "webgl",
+    "tunnel",
+    "threejs",
+    "geometry"
+  ],
+  "description": "A tunnel experiment in WebGL with infinite scrolling effect",
+  "author": "Louis Hoebregts",
+  "license": "MIT",
+  "folder": "infinite-tubes",
+  "clonedAt": "2025-05-25T17:38:53.369Z",
+  "originalRepo": "https://github.com/Mamboleoo/InfiniteTubes"
+}

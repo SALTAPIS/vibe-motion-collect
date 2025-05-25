@@ -1,0 +1,16 @@
+{
+  "title": "Infinite Lights",
+  "url": "https://github.com/Anemolo/Infinite-Lights",
+  "tags": [
+    "threejs",
+    "lights",
+    "trails",
+    "particles"
+  ],
+  "description": "High-speed light trails effect with beautiful particle system",
+  "author": "crnacura",
+  "license": "MIT",
+  "folder": "infinite-lights",
+  "clonedAt": "2025-05-25T17:38:50.993Z",
+  "originalRepo": "https://github.com/Anemolo/Infinite-Lights"
+}

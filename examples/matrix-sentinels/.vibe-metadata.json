@@ -1,0 +1,16 @@
+{
+  "title": "Matrix Sentinels",
+  "url": "https://github.com/MisterPrada/matrix-sentinels",
+  "tags": [
+    "threejs",
+    "particles",
+    "TSL",
+    "matrix"
+  ],
+  "description": "Matrix-inspired particle tails on moving sentinels",
+  "author": "Mister Prada",
+  "license": "MIT",
+  "folder": "matrix-sentinels",
+  "clonedAt": "2025-05-25T17:38:55.239Z",
+  "originalRepo": "https://github.com/MisterPrada/matrix-sentinels"
+}

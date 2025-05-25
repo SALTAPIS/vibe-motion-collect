@@ -1,0 +1,16 @@
+{
+  "title": "Space Travel Warp",
+  "url": "https://github.com/frequin/space-travel",
+  "tags": [
+    "webgl",
+    "stars",
+    "lighting",
+    "space"
+  ],
+  "description": "WebGL space scene with lightspeed warp effect",
+  "author": "frequin",
+  "license": "unlicense",
+  "folder": "space-travel-warp",
+  "clonedAt": "2025-05-25T17:38:52.243Z",
+  "originalRepo": "https://github.com/frequin/space-travel"
+}

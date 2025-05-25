@@ -1,0 +1,19 @@
+{
+  "title": "God Grass",
+  "url": "https://github.com/MisterPrada/grass",
+  "tags": [
+    "threejs",
+    "geometry",
+    "procedural",
+    "nature",
+    "particles",
+    "grass",
+    "wind"
+  ],
+  "description": "Procedural grass generation with realistic wind movement and particle effects",
+  "author": "Mister Prada",
+  "license": "MIT",
+  "folder": "god-grass",
+  "clonedAt": "2025-05-25T17:51:53.941Z",
+  "originalRepo": "https://github.com/MisterPrada/grass"
+}
