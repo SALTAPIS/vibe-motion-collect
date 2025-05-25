@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Motion Collect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .filters {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .filter-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            padding: 0.5rem 1rem;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        
+        .tag:hover, .tag.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .example-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .example-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .card-preview {
+            height: 200px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #6c757d;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .card-author {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-description {
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-tag {
+            padding: 0.25rem 0.75rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #666;
+            border: 1px solid #e9ecef;
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+            transform: translateY(-2px);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: white;
+        }
+        
+        .no-results h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Vibe Motion Collect</h1>
+            <p class="subtitle">A curated collection of animation examples</p>
+            <div class="stats">
+                <div class="stat">
+                    <strong>7</strong><br>
+                    Examples
+                </div>
+                <div class="stat">
+                    <strong>22</strong><br>
+                    Tags
+                </div>
+                <div class="stat">
+                    <strong>5/25/2025</strong><br>
+                    Last Updated
+                </div>
+            </div>
+        </header>
+        
+        <div class="filters">
+            <input type="text" class="search-box" placeholder="Search examples..." id="searchBox">
+            
+            <div class="filter-group">
+                <div class="filter-label">All Tags</div>
+                <div class="filter-tags" id="tagFilters">
+                    <div class="tag" data-tag="TSL">TSL</div><div class="tag" data-tag="ambient">ambient</div><div class="tag" data-tag="background">background</div><div class="tag" data-tag="canvas">canvas</div><div class="tag" data-tag="geometry">geometry</div><div class="tag" data-tag="grass">grass</div><div class="tag" data-tag="lighting">lighting</div><div class="tag" data-tag="lights">lights</div><div class="tag" data-tag="matrix">matrix</div><div class="tag" data-tag="morphing">morphing</div><div class="tag" data-tag="nature">nature</div><div class="tag" data-tag="particles">particles</div><div class="tag" data-tag="performance">performance</div><div class="tag" data-tag="procedural">procedural</div><div class="tag" data-tag="react-three-fiber">react-three-fiber</div><div class="tag" data-tag="space">space</div><div class="tag" data-tag="stars">stars</div><div class="tag" data-tag="threejs">threejs</div><div class="tag" data-tag="trails">trails</div><div class="tag" data-tag="tunnel">tunnel</div><div class="tag" data-tag="webgl">webgl</div><div class="tag" data-tag="wind">wind</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gallery" id="gallery">
+            
+      <div class="example-card" data-tags='["threejs","lights","trails","particles"]'>
+          <div class="card-preview">
+              🎨
+          </div>
+          <div class="card-content">
+              <h3 class="card-title">Infinite Lights</h3>
+              <p class="card-author">by crnacura</p>
+              <p class="card-description">High-speed light trails effect with beautiful particle system</p>
+              <div class="card-tags">
+                  <span class="card-tag">threejs</span><span class="card-tag">lights</span><span class="card-tag">trails</span><span class="card-tag">particles</span>
+              </div>
+              <div class="card-actions">
+                  <button class="btn btn-primary" onclick="openExample('infinite-lights')">
+                      View Demo
+                  </button>
+                  <button class="btn btn-secondary" onclick="viewSource('https://github.com/Anemolo/Infinite-Lights')">
+                      Source Code
+                  </button>
+              </div>
+          </div>
+      </div>
+      <div class="example-card" data-tags='["canvas","ambient","background"]'>
+          <div class="card-preview">
+              🎨
+          </div>
+          <div class="card-content">
+              <h3 class="card-title">Ambient Canvas Backgrounds</h3>
+              <p class="card-author">by crnacura</p>
+              <p class="card-description">Collection of ambient background animations using canvas</p>
+              <div class="card-tags">
+                  <span class="card-tag">canvas</span><span class="card-tag">ambient</span><span class="card-tag">background</span>
+              </div>
+              <div class="card-actions">
+                  <button class="btn btn-primary" onclick="openExample('ambient-canvas-backgrounds')">
+                      View Demo
+                  </button>
+                  <button class="btn btn-secondary" onclick="viewSource('https://github.com/crnacura/AmbientCanvasBackgrounds')">
+                      Source Code
+                  </button>
+              </div>
+          </div>
+      </div>
+      <div class="example-card" data-tags='["webgl","stars","lighting","space"]'>
+          <div class="card-preview">
+              🎨
+          </div>
+          <div class="card-content">
+              <h3 class="card-title">Space Travel Warp</h3>
+              <p class="card-author">by frequin</p>
+              <p class="card-description">WebGL space scene with lightspeed warp effect</p>
+              <div class="card-tags">
+                  <span class="card-tag">webgl</span><span class="card-tag">stars</span><span class="card-tag">lighting</span><span class="card-tag">space</span>
+              </div>
+              <div class="card-actions">
+                  <button class="btn btn-primary" onclick="openExample('space-travel-warp')">
+                      View Demo
+                  </button>
+                  <button class="btn btn-secondary" onclick="viewSource('https://github.com/frequin/space-travel')">
+                      Source Code
+                  </button>
+              </div>
+          </div>
+      </div>
+      <div class="example-card" data-tags='["webgl","tunnel","threejs","geometry"]'>
+          <div class="card-preview">
+              🎨
+          </div>
+          <div class="card-content">
+              <h3 class="card-title">Infinite Tubes</h3>
+              <p class="card-author">by Louis Hoebregts</p>
+              <p class="card-description">A tunnel experiment in WebGL with infinite scrolling effect</p>
+              <div class="card-tags">
+                  <span class="card-tag">webgl</span><span class="card-tag">tunnel</span><span class="card-tag">threejs</span><span class="card-tag">geometry</span>
+              </div>
+              <div class="card-actions">
+                  <button class="btn btn-primary" onclick="openExample('infinite-tubes')">
+                      View Demo
+                  </button>
+                  <button class="btn btn-secondary" onclick="viewSource('https://github.com/Mamboleoo/InfiniteTubes')">
+                      Source Code
+                  </button>
+              </div>
+          </div>
+      </div>
+      <div class="example-card" data-tags='["threejs","particles","TSL","matrix"]'>
+          <div class="card-preview">
+              🎨
+          </div>
+          <div class="card-content">
+              <h3 class="card-title">Matrix Sentinels</h3>
+              <p class="card-author">by Mister Prada</p>
+              <p class="card-description">Matrix-inspired particle tails on moving sentinels</p>
+              <div class="card-tags">
+                  <span class="card-tag">threejs</span><span class="card-tag">particles</span><span class="card-tag">TSL</span><span class="card-tag">matrix</span>
+              </div>
+              <div class="card-actions">
+                  <button class="btn btn-primary" onclick="openExample('matrix-sentinels')">
+                      View Demo
+                  </button>
+                  <button class="btn btn-secondary" onclick="viewSource('https://github.com/MisterPrada/matrix-sentinels')">
+                      Source Code
+                  </button>
+              </div>
+          </div>
+      </div>
+      <div class="example-card" data-tags='["threejs","particles","TSL","morphing"]'>
+          <div class="card-preview">
+              🎨
+          </div>
+          <div class="card-content">
+              <h3 class="card-title">Morph Particles</h3>
+              <p class="card-author">by Mister Prada</p>
+              <p class="card-description">Particles morphing with animation and smooth scroll integration</p>
+              <div class="card-tags">
+                  <span class="card-tag">threejs</span><span class="card-tag">particles</span><span class="card-tag">TSL</span><span class="card-tag">morphing</span>
+              </div>
+              <div class="card-actions">
+                  <button class="btn btn-primary" onclick="openExample('morph-particles')">
+                      View Demo
+                  </button>
+                  <button class="btn btn-secondary" onclick="viewSource('https://github.com/MisterPrada/morph-particles')">
+                      Source Code
+                  </button>
+              </div>
+          </div>
+      </div>
+      <div class="example-card" data-tags='["threejs","geometry","procedural","nature","particles","grass","wind"]'>
+          <div class="card-preview">
+              🎨
+          </div>
+          <div class="card-content">
+              <h3 class="card-title">God Grass</h3>
+              <p class="card-author">by Mister Prada</p>
+              <p class="card-description">Procedural grass generation with realistic wind movement and particle effects</p>
+              <div class="card-tags">
+                  <span class="card-tag">threejs</span><span class="card-tag">geometry</span><span class="card-tag">procedural</span><span class="card-tag">nature</span><span class="card-tag">particles</span><span class="card-tag">grass</span><span class="card-tag">wind</span>
+              </div>
+              <div class="card-actions">
+                  <button class="btn btn-primary" onclick="openExample('god-grass')">
+                      View Demo
+                  </button>
+                  <button class="btn btn-secondary" onclick="viewSource('https://github.com/MisterPrada/grass')">
+                      Source Code
+                  </button>
+              </div>
+          </div>
+      </div>
+        </div>
+        
+        <div class="no-results" id="noResults" style="display: none;">
+            <h3>No examples found</h3>
+            <p>Try adjusting your search or filters</p>
+        </div>
+    </div>
+    
+    <script>
+        // Gallery functionality
+        const examples = [{"title":"Infinite Lights","url":"https://github.com/Anemolo/Infinite-Lights","tags":["threejs","lights","trails","particles"],"description":"High-speed light trails effect with beautiful particle system","author":"crnacura","license":"MIT","folder":"infinite-lights"},{"title":"Ambient Canvas Backgrounds","url":"https://github.com/crnacura/AmbientCanvasBackgrounds","tags":["canvas","ambient","background"],"description":"Collection of ambient background animations using canvas","author":"crnacura","license":"MIT","folder":"ambient-canvas-backgrounds"},{"title":"Space Travel Warp","url":"https://github.com/frequin/space-travel","tags":["webgl","stars","lighting","space"],"description":"WebGL space scene with lightspeed warp effect","author":"frequin","license":"unlicense","folder":"space-travel-warp"},{"title":"Infinite Tubes","url":"https://github.com/Mamboleoo/InfiniteTubes","tags":["webgl","tunnel","threejs","geometry"],"description":"A tunnel experiment in WebGL with infinite scrolling effect","author":"Louis Hoebregts","license":"MIT","folder":"infinite-tubes"},{"title":"Matrix Sentinels","url":"https://github.com/MisterPrada/matrix-sentinels","tags":["threejs","particles","TSL","matrix"],"description":"Matrix-inspired particle tails on moving sentinels","author":"Mister Prada","license":"MIT","folder":"matrix-sentinels"},{"title":"Morph Particles","url":"https://github.com/MisterPrada/morph-particles","tags":["threejs","particles","TSL","morphing"],"description":"Particles morphing with animation and smooth scroll integration","author":"Mister Prada","license":"MIT","folder":"morph-particles"},{"title":"God Grass","url":"https://github.com/MisterPrada/grass","tags":["threejs","geometry","procedural","nature","particles","grass","wind"],"description":"Procedural grass generation with realistic wind movement and particle effects","author":"Mister Prada","license":"MIT","folder":"god-grass"}];
+        const searchBox = document.getElementById('searchBox');
+        const tagFilters = document.getElementById('tagFilters');
+        const gallery = document.getElementById('gallery');
+        const noResults = document.getElementById('noResults');
+        
+        let activeFilters = new Set();
+        let searchTerm = '';
+        
+        function filterExamples() {
+            const filtered = examples.filter(example => {
+                // Search term filter
+                const matchesSearch = !searchTerm || 
+                    example.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    example.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    example.author.toLowerCase().includes(searchTerm.toLowerCase());
+                
+                // Tag filter
+                const matchesTags = activeFilters.size === 0 || 
+                    example.tags.some(tag => activeFilters.has(tag));
+                
+                return matchesSearch && matchesTags;
+            });
+            
+            renderGallery(filtered);
+        }
+        
+        function renderGallery(examplesList) {
+            if (examplesList.length === 0) {
+                gallery.style.display = 'none';
+                noResults.style.display = 'block';
+            } else {
+                gallery.style.display = 'grid';
+                noResults.style.display = 'none';
+                gallery.innerHTML = examplesList.map(example => `
+      <div class="example-card" data-tags='${JSON.stringify(example.tags)}'>
+          <div class="card-preview">
+              🎨
+          </div>
+          <div class="card-content">
+              <h3 class="card-title">${example.title}</h3>
+              <p class="card-author">by ${example.author}</p>
+              <p class="card-description">${example.description}</p>
+              <div class="card-tags">
+                  ${example.tags.map(tag => `<span class="card-tag">${tag}</span>`).join('')}
+              </div>
+              <div class="card-actions">
+                  <button class="btn btn-primary" onclick="openExample('${example.folder}')">
+                      View Demo
+                  </button>
+                  <button class="btn btn-secondary" onclick="viewSource('${example.url}')">
+                      Source Code
+                  </button>
+              </div>
+          </div>
+      </div>`).join('');
+            }
+        }
+        
+        // Event listeners
+        searchBox.addEventListener('input', (e) => {
+            searchTerm = e.target.value;
+            filterExamples();
+        });
+        
+        tagFilters.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tag')) {
+                const tag = e.target.dataset.tag;
+                
+                if (activeFilters.has(tag)) {
+                    activeFilters.delete(tag);
+                    e.target.classList.remove('active');
+                } else {
+                    activeFilters.add(tag);
+                    e.target.classList.add('active');
+                }
+                
+                filterExamples();
+            }
+        });
+        
+        // Open example
+        function openExample(folder) {
+            window.open(`/examples/${folder}`, '_blank');
+        }
+        
+        function viewSource(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+{
+  "generatedAt": "2025-05-25T18:07:31.063Z",
+  "totalExamples": 7,
+  "examples": [
+    {
+      "title": "Infinite Lights",
+      "url": "https://github.com/Anemolo/Infinite-Lights",
+      "tags": [
+        "threejs",
+        "lights",
+        "trails",
+        "particles"
+      ],
+      "description": "High-speed light trails effect with beautiful particle system",
+      "author": "crnacura",
+      "license": "MIT",
+      "folder": "infinite-lights"
+    },
+    {
+      "title": "Ambient Canvas Backgrounds",
+      "url": "https://github.com/crnacura/AmbientCanvasBackgrounds",
+      "tags": [
+        "canvas",
+        "ambient",
+        "background"
+      ],
+      "description": "Collection of ambient background animations using canvas",
+      "author": "crnacura",
+      "license": "MIT",
+      "folder": "ambient-canvas-backgrounds"
+    },
+    {
+      "title": "Space Travel Warp",
+      "url": "https://github.com/frequin/space-travel",
+      "tags": [
+        "webgl",
+        "stars",
+        "lighting",
+        "space"
+      ],
+      "description": "WebGL space scene with lightspeed warp effect",
+      "author": "frequin",
+      "license": "unlicense",
+      "folder": "space-travel-warp"
+    },
+    {
+      "title": "Infinite Tubes",
+      "url": "https://github.com/Mamboleoo/InfiniteTubes",
+      "tags": [
+        "webgl",
+        "tunnel",
+        "threejs",
+        "geometry"
+      ],
+      "description": "A tunnel experiment in WebGL with infinite scrolling effect",
+      "author": "Louis Hoebregts",
+      "license": "MIT",
+      "folder": "infinite-tubes"
+    },
+    {
+      "title": "Matrix Sentinels",
+      "url": "https://github.com/MisterPrada/matrix-sentinels",
+      "tags": [
+        "threejs",
+        "particles",
+        "TSL",
+        "matrix"
+      ],
+      "description": "Matrix-inspired particle tails on moving sentinels",
+      "author": "Mister Prada",
+      "license": "MIT",
+      "folder": "matrix-sentinels"
+    },
+    {
+      "title": "Morph Particles",
+      "url": "https://github.com/MisterPrada/morph-particles",
+      "tags": [
+        "threejs",
+        "particles",
+        "TSL",
+        "morphing"
+      ],
+      "description": "Particles morphing with animation and smooth scroll integration",
+      "author": "Mister Prada",
+      "license": "MIT",
+      "folder": "morph-particles"
+    },
+    {
+      "title": "God Grass",
+      "url": "https://github.com/MisterPrada/grass",
+      "tags": [
+        "threejs",
+        "geometry",
+        "procedural",
+        "nature",
+        "particles",
+        "grass",
+        "wind"
+      ],
+      "description": "Procedural grass generation with realistic wind movement and particle effects",
+      "author": "Mister Prada",
+      "license": "MIT",
+      "folder": "god-grass"
+    }
+  ],
+  "tags": [
+    "TSL",
+    "ambient",
+    "background",
+    "canvas",
+    "geometry",
+    "grass",
+    "lighting",
+    "lights",
+    "matrix",
+    "morphing",
+    "nature",
+    "particles",
+    "performance",
+    "procedural",
+    "react-three-fiber",
+    "space",
+    "stars",
+    "threejs",
+    "trails",
+    "tunnel",
+    "webgl",
+    "wind"
+  ]
+}
